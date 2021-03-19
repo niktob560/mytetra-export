@@ -33,6 +33,7 @@ class NodeParser(object):
         self.crypt = node.getAttribute('crypt') == '1'
         self.id = node.getAttribute('id')
         self.name = node.getAttribute('name')
+        self.icon = node.getAttribute('icon')
         nodes_elems = node.getElementsByTagName('node')
         self.nodes = []
         for node_elem in nodes_elems:
@@ -47,6 +48,7 @@ class NodeParser(object):
         return {'crypt': self.crypt,
                 'id': self.id,
                 'name': self.name,
+                'icon': self.icon,
                 'nodes': list(map(NodeParser.to_string, self.nodes)),
                 'records': list(map(RecordParser.to_string, self.records)),
                 }

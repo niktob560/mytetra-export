@@ -7,16 +7,19 @@
         "crypt": true,
         "id": "1300000000aaaaaaaaa1",
         "name": "UkM1U0lNUAMrRKS0rXuMnmK+fWXZF1FSgiXAWQODLlNjXpgF6elfkoyPJWHnPkLD",
+        "icon": "",
         "nodes": [
           {
             "crypt": true,
             "id": "1576086137ha4dsrslal",
             "name": "UkM1U0lNUANuFXsTySiOVXZ13uh7U51IIpzqHb48YuOdL5b8c4RMlkW4A+HrvAnF",
+            "icon": "",
             "nodes": [
               {
                 "crypt": true,
                 "id": "1576086146s8o93px9kw",
                 "name": "UkM1U0lNUAO6K+0pQGk8Cd9Ji3UxaeMa7caCJq1+wIEZKjK9Y51KJTt+wr+JE6pb",
+                "icon": "",
                 "nodes": [],
                 "records": [
                   {
@@ -139,6 +142,7 @@
             "crypt": true,
             "id": "1576086146s8o93px9kw",
             "name": "UkM1U0lNUAO6K+0pQGk8Cd9Ji3UxaeMa7caCJq1+wIEZKjK9Y51KJTt+wr+JE6pb",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -202,11 +206,13 @@
             "crypt": true,
             "id": "1576086668vpx0rpaztv",
             "name": "UkM1U0lNUAOnXMK0xAM8P25VIy7B4ZO4ZKxq2zEF3dBuH9iEjtmL7YYW+Phk4Aqt",
+            "icon": "",
             "nodes": [
               {
                 "crypt": true,
                 "id": "1576086677i8ud3pghvd",
                 "name": "UkM1U0lNUAOPb1I3yxXrkN2rl7qgzcrMRpwGwo6G+yG8uJusucnxTJcVzh+FPmlh",
+                "icon": "",
                 "nodes": [],
                 "records": [
                   {
@@ -241,6 +247,7 @@
             "crypt": true,
             "id": "1576086677i8ud3pghvd",
             "name": "UkM1U0lNUAOPb1I3yxXrkN2rl7qgzcrMRpwGwo6G+yG8uJusucnxTJcVzh+FPmlh",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -260,6 +267,7 @@
             "crypt": true,
             "id": "1576674311md2ek67odw",
             "name": "UkM1U0lNUAMY7j6uKvl1w5brDoCTcysGc8hnDDZR42CMBGWoYUbHzs32pMTs9Aj5",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -338,11 +346,13 @@
         "crypt": true,
         "id": "1576086137ha4dsrslal",
         "name": "UkM1U0lNUANuFXsTySiOVXZ13uh7U51IIpzqHb48YuOdL5b8c4RMlkW4A+HrvAnF",
+        "icon": "",
         "nodes": [
           {
             "crypt": true,
             "id": "1576086146s8o93px9kw",
             "name": "UkM1U0lNUAO6K+0pQGk8Cd9Ji3UxaeMa7caCJq1+wIEZKjK9Y51KJTt+wr+JE6pb",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -465,6 +475,7 @@
         "crypt": true,
         "id": "1576086146s8o93px9kw",
         "name": "UkM1U0lNUAO6K+0pQGk8Cd9Ji3UxaeMa7caCJq1+wIEZKjK9Y51KJTt+wr+JE6pb",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -528,11 +539,13 @@
         "crypt": true,
         "id": "1576086668vpx0rpaztv",
         "name": "UkM1U0lNUAOnXMK0xAM8P25VIy7B4ZO4ZKxq2zEF3dBuH9iEjtmL7YYW+Phk4Aqt",
+        "icon": "",
         "nodes": [
           {
             "crypt": true,
             "id": "1576086677i8ud3pghvd",
             "name": "UkM1U0lNUAOPb1I3yxXrkN2rl7qgzcrMRpwGwo6G+yG8uJusucnxTJcVzh+FPmlh",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -567,6 +580,7 @@
         "crypt": true,
         "id": "1576086677i8ud3pghvd",
         "name": "UkM1U0lNUAOPb1I3yxXrkN2rl7qgzcrMRpwGwo6G+yG8uJusucnxTJcVzh+FPmlh",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -586,6 +600,7 @@
         "crypt": true,
         "id": "1576674311md2ek67odw",
         "name": "UkM1U0lNUAMY7j6uKvl1w5brDoCTcysGc8hnDDZR42CMBGWoYUbHzs32pMTs9Aj5",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -605,11 +620,13 @@
         "crypt": false,
         "id": "1576087492aczaqzgxsx",
         "name": "МИРЭА",
+        "icon": "",
         "nodes": [
           {
             "crypt": false,
             "id": "157608749854j0k0284q",
             "name": "История",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -640,6 +657,7 @@
             "crypt": true,
             "id": "1576094252l9k3xqlbkx",
             "name": "UkM1U0lNUANPwFkHUGFmIs09B3oI0+rOsiZXF2gHWGL2eeMun06PH2BkABjJ7LD0+wmDKNFD1R03JWIHvcyr2vSi+xcQMROU",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -681,6 +699,7 @@
             "crypt": false,
             "id": "15760973694bki3910lj",
             "name": "Введение в проф. деятельность",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -711,6 +730,7 @@
             "crypt": false,
             "id": "15760984877knu1xjjz6",
             "name": "Прикладные задачи дискретной техники",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -774,6 +794,7 @@
             "crypt": false,
             "id": "1581919168ku190oh0c2",
             "name": "Методы и средства автоматизации проектирования интеллектуальныз измерительных устройств",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -815,11 +836,13 @@
             "crypt": false,
             "id": "1582005832d1ny9ro90b",
             "name": "Компьютерные средства трехмерного моделирования и конструирования приборов и систем",
+            "icon": "",
             "nodes": [
               {
                 "crypt": false,
                 "id": "1599631358k6uu58tmph",
                 "name": "Семестр 3",
+                "icon": "",
                 "nodes": [],
                 "records": [
                   {
@@ -861,6 +884,7 @@
                 "crypt": false,
                 "id": "1599631364e2ht6xr2qu",
                 "name": "Семестр 2",
+                "icon": "",
                 "nodes": [],
                 "records": [
                   {
@@ -928,6 +952,7 @@
             "crypt": false,
             "id": "1599631358k6uu58tmph",
             "name": "Семестр 3",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -969,6 +994,7 @@
             "crypt": false,
             "id": "1599631364e2ht6xr2qu",
             "name": "Семестр 2",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -999,6 +1025,7 @@
             "crypt": false,
             "id": "1583409643twcmmn7nc5",
             "name": "МСАПИИУ",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1040,6 +1067,7 @@
             "crypt": false,
             "id": "1592817815k7egtjf13d",
             "name": "Физика",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1059,6 +1087,7 @@
             "crypt": false,
             "id": "1598940450sgaf6jsbn7",
             "name": "ИТиОТИ",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1122,6 +1151,7 @@
             "crypt": false,
             "id": "1598966466eq6g8zqwqr",
             "name": "ФОПИ",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1218,6 +1248,7 @@
             "crypt": false,
             "id": "1599485191tjp78t8a8o",
             "name": "Электротехника",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1237,6 +1268,7 @@
             "crypt": false,
             "id": "1613388132yy6v2s6wqo",
             "name": "Методы и средства цифровой обработки сигналов",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1289,6 +1321,7 @@
             "crypt": false,
             "id": "1613395548vlpef376dh",
             "name": "Цифровые измерительные приборы",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1319,6 +1352,7 @@
             "crypt": true,
             "id": "16134089946wr2aaqija",
             "name": "UkM1U0lNUAP/BLvMr581VdpTicnckTkbHWq/iYTExdOTPJIpP3/nGZz825ZM47e05Vjq+HBS2U0=",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1338,6 +1372,7 @@
             "crypt": false,
             "id": "1613475304lxhyk7754u",
             "name": "Оптические аналитические приборы и методы исследований",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1357,6 +1392,7 @@
             "crypt": false,
             "id": "161468103328vutv34zm",
             "name": "Преобразование измерительных сигналов",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1387,6 +1423,7 @@
             "crypt": false,
             "id": "1615288937yq6si6ke75",
             "name": "Основы конструирования и технологии приборостроения",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1432,6 +1469,7 @@
         "crypt": false,
         "id": "157608749854j0k0284q",
         "name": "История",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -1462,6 +1500,7 @@
         "crypt": true,
         "id": "1576094252l9k3xqlbkx",
         "name": "UkM1U0lNUANPwFkHUGFmIs09B3oI0+rOsiZXF2gHWGL2eeMun06PH2BkABjJ7LD0+wmDKNFD1R03JWIHvcyr2vSi+xcQMROU",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -1503,6 +1542,7 @@
         "crypt": false,
         "id": "15760973694bki3910lj",
         "name": "Введение в проф. деятельность",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -1533,6 +1573,7 @@
         "crypt": false,
         "id": "15760984877knu1xjjz6",
         "name": "Прикладные задачи дискретной техники",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -1596,6 +1637,7 @@
         "crypt": false,
         "id": "1581919168ku190oh0c2",
         "name": "Методы и средства автоматизации проектирования интеллектуальныз измерительных устройств",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -1637,11 +1679,13 @@
         "crypt": false,
         "id": "1582005832d1ny9ro90b",
         "name": "Компьютерные средства трехмерного моделирования и конструирования приборов и систем",
+        "icon": "",
         "nodes": [
           {
             "crypt": false,
             "id": "1599631358k6uu58tmph",
             "name": "Семестр 3",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1683,6 +1727,7 @@
             "crypt": false,
             "id": "1599631364e2ht6xr2qu",
             "name": "Семестр 2",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -1750,6 +1795,7 @@
         "crypt": false,
         "id": "1599631358k6uu58tmph",
         "name": "Семестр 3",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -1791,6 +1837,7 @@
         "crypt": false,
         "id": "1599631364e2ht6xr2qu",
         "name": "Семестр 2",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -1821,6 +1868,7 @@
         "crypt": false,
         "id": "1583409643twcmmn7nc5",
         "name": "МСАПИИУ",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -1862,6 +1910,7 @@
         "crypt": false,
         "id": "1592817815k7egtjf13d",
         "name": "Физика",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -1881,6 +1930,7 @@
         "crypt": false,
         "id": "1598940450sgaf6jsbn7",
         "name": "ИТиОТИ",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -1944,6 +1994,7 @@
         "crypt": false,
         "id": "1598966466eq6g8zqwqr",
         "name": "ФОПИ",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -2040,6 +2091,7 @@
         "crypt": false,
         "id": "1599485191tjp78t8a8o",
         "name": "Электротехника",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -2059,6 +2111,7 @@
         "crypt": false,
         "id": "1613388132yy6v2s6wqo",
         "name": "Методы и средства цифровой обработки сигналов",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -2111,6 +2164,7 @@
         "crypt": false,
         "id": "1613395548vlpef376dh",
         "name": "Цифровые измерительные приборы",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -2141,6 +2195,7 @@
         "crypt": true,
         "id": "16134089946wr2aaqija",
         "name": "UkM1U0lNUAP/BLvMr581VdpTicnckTkbHWq/iYTExdOTPJIpP3/nGZz825ZM47e05Vjq+HBS2U0=",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -2160,6 +2215,7 @@
         "crypt": false,
         "id": "1613475304lxhyk7754u",
         "name": "Оптические аналитические приборы и методы исследований",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -2179,6 +2235,7 @@
         "crypt": false,
         "id": "161468103328vutv34zm",
         "name": "Преобразование измерительных сигналов",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -2209,6 +2266,7 @@
         "crypt": false,
         "id": "1615288937yq6si6ke75",
         "name": "Основы конструирования и технологии приборостроения",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -2228,11 +2286,13 @@
         "crypt": true,
         "id": "1577889786vil8g877ri",
         "name": "UkM1U0lNUAMK9Yb6EG1NlLCx/jzUTwVjqGeKWExjkHmrtKPFYZnqD1lJ2qmVzg5h",
+        "icon": "",
         "nodes": [
           {
             "crypt": true,
             "id": "157788979246ygmwx2gg",
             "name": "UkM1U0lNUAPk4a+pgjq0eDa5dhzBm+v3eKOX7y3SgnCnoL6YU81PhsCJUaxWP3rh",
+            "icon": "",
             "nodes": [],
             "records": [
               {
@@ -2267,6 +2327,7 @@
         "crypt": true,
         "id": "157788979246ygmwx2gg",
         "name": "UkM1U0lNUAPk4a+pgjq0eDa5dhzBm+v3eKOX7y3SgnCnoL6YU81PhsCJUaxWP3rh",
+        "icon": "",
         "nodes": [],
         "records": [
           {
@@ -2286,6 +2347,7 @@
         "crypt": false,
         "id": "1581772812jqpqd1yj9g",
         "name": "Photo",
+        "icon": "",
         "nodes": [],
         "records": [
           {
