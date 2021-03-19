@@ -36,13 +36,16 @@ class NodeParser(object):
         self.icon = node.getAttribute('icon')
         nodes_elems = node.getElementsByTagName('node')
         self.nodes = []
+        self.records = []
         for node_elem in nodes_elems:
             self.nodes.append(NodeParser(node_elem))
-        records_elems = node.getElementsByTagName(
-            'recordtable')[0].getElementsByTagName('record')
-        self.records = []
-        for record_elem in records_elems:
-            self.records.append(RecordParser(record_elem))
+        try:
+            records_elems = node.getElementsByTagName(
+                'recordtable')[0].getElementsByTagName('record')
+            for record_elem in records_elems:
+                self.records.append(RecordParser(record_elem))
+        except:
+            self.records = []
 
     def to_string(self):
         return {'crypt': self.crypt,
@@ -54,15 +57,6 @@ class NodeParser(object):
                 }
 
 
-class ContentParser(object):
-    def __init__(self, content):
-        self.nodes = list(
-            map(NodeParser, content.getElementsByTagName('node')))
-    
-    def to_string(self):
-        return {'nodes': list(map(NodeParser.to_string, self.nodes))}
-
-
 class MytetraParser(object):
 
     def __init__(self, url, flag='url'):
@@ -70,7 +64,7 @@ class MytetraParser(object):
         format = xml.getElementsByTagName('format')[0]
         self.version = int(format.getAttribute('version'))
         self.subversion = int(format.getAttribute('subversion'))
-        self.content = ContentParser(xml.getElementsByTagName('content')[0])
+        self.content = NodeParser(xml.getElementsByTagName('content')[0])
         self.flag = flag
 
     def to_string(self):
@@ -85,5 +79,5 @@ class MytetraParser(object):
         return node
 
 if __name__ == "__main__":
-    appt = MytetraParser("mytetra.xml")
-    print(appt.to_string())
+    mytetra = MytetraParser("mytetra.xml")
+    print(mytetra.to_string())
