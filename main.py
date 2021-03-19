@@ -1,6 +1,7 @@
 #!/bin/python
 
 import xml.dom.minidom
+import os
 
 
 class RecordParser(object):
@@ -47,6 +48,17 @@ class NodeParser(object):
         except:
             self.records = []
 
+    def construct(self):
+        print('construct from {}'.format(os.getcwd()))
+        if self.id.__len__() > 0:
+            print('mkdir {}'.format(self.id))
+            os.mkdir(self.id)
+            os.chdir(self.id)
+        for node in self.nodes:
+            node.construct()
+        if self.id.__len__() > 0:
+            os.chdir('..')
+
     def to_string(self):
         return {'crypt': self.crypt,
                 'id': self.id,
@@ -61,9 +73,9 @@ class MytetraParser(object):
 
     def __init__(self, url, flag='url'):
         xml = self.getXml(url)
-        format = xml.getElementsByTagName('format')[0]
-        self.version = int(format.getAttribute('version'))
-        self.subversion = int(format.getAttribute('subversion'))
+        fmt = xml.getElementsByTagName('format')[0]
+        self.version = int(fmt.getAttribute('version'))
+        self.subversion = int(fmt.getAttribute('subversion'))
         self.content = NodeParser(xml.getElementsByTagName('content')[0])
         self.flag = flag
 
@@ -78,6 +90,8 @@ class MytetraParser(object):
         node = doc.documentElement
         return node
 
+
 if __name__ == "__main__":
     mytetra = MytetraParser("mytetra.xml")
-    print(mytetra.to_string())
+    # print(mytetra.to_string())
+    mytetra.content.construct()
