@@ -2,6 +2,21 @@
 
 import xml.dom.minidom
 import os
+import shutil
+
+
+sourse_dir = '/tmp/test/base/'
+
+
+def copytree(src, dst, symlinks=False, ignore=None):
+    os.mkdir(dst)
+    for item in os.listdir(src):
+        s = os.path.join(src, item)
+        d = os.path.join(dst, item)
+        if os.path.isdir(s):
+            shutil.copytree(s, d, symlinks, ignore)
+        else:
+            shutil.copy2(s, d)
 
 
 class RecordParser(object):
@@ -49,14 +64,18 @@ class NodeParser(object):
             self.records = []
 
     def construct(self):
-        print('construct from {}'.format(os.getcwd()))
-        if self.id.__len__() > 0:
-            print('mkdir {}'.format(self.id))
-            os.mkdir(self.id)
-            os.chdir(self.id)
+        # Create directories
         for node in self.nodes:
+            os.mkdir(node.id)
+            os.chdir(node.id)
+            for record in self.records:
+                # Copy data
+                copytree(sourse_dir + record.dir,
+                         os.path.abspath(os.getcwd()) + '/' + record.dir)
+                # Construct child
             node.construct()
         if self.id.__len__() > 0:
+            # Return back
             os.chdir('..')
 
     def to_string(self):
