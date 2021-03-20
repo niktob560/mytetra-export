@@ -8,6 +8,53 @@ import shutil
 sourse_dir = '/tmp/test/base/'
 
 
+# class IndexElem(object):
+#     def __init__(self, title: str, href: str, records: int, nodes: int, crypt: bool):
+#         self.title = title
+#         self.href = href
+#         self.records = records
+#         self.nodes = nodes
+#         self.crypt = crypt
+
+#     def to_html(self):
+#         return '<p class="list-item"><a href="{}" class="href">{}</a></p>'.format(self.href, self.title)
+
+
+class HtmlIndex(object):
+    def __init__(self, title: str, nodes: list, records: list):
+        self.title = title
+        self.nodes = nodes
+        self.records = records
+
+    def to_html(self):
+        nodes_html = ''
+        for node in self.nodes:
+            nodes_html += node.to_html()
+        records_html = ''
+        for record in self.records:
+            records_html += record.to_html()
+        return ('<html>'
+                + '<head>'
+                + '<title>' + self.title + '</title>'
+                + '<meta http-equiv="content-type" content="text/html; charset=UTF-8">'
+                + '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">'
+                + '<link rel="stylesheet" type="text/css" href="nav.css">'
+                + '<link rel="stylesheet" type="text/css" href="list-item.css">'
+                + '<link rel="stylesheet" type="text/css" href="body.css">'
+                + '<link rel="stylesheet" type="text/css" href="href.css">'
+                + '</head>'
+                + '<body>'
+                + '<div class="topnav">'
+                + '<a href="index.html" class="href">' + self.title + '</a>'
+                + '</div>'
+                + '<div>'
+                + nodes_html
+                + records_html
+                + '</div>'
+                + '</body>'
+                + '</html>')
+
+
 def copytree(src, dst, symlinks=False, ignore=None):
     os.mkdir(dst)
     for item in os.listdir(src):
@@ -43,6 +90,10 @@ class RecordParser(object):
                 'block': self.block,
                 }
 
+    def to_html(self):
+        return ('<p class="list-item"><a href="' + self.dir + '/' + self.file + '" class="href">'
+                + self.name + '</a></p>')
+
 
 class NodeParser(object):
     def __init__(self, node):
@@ -54,7 +105,9 @@ class NodeParser(object):
         self.nodes = []
         self.records = []
         for node_elem in nodes_elems:
-            self.nodes.append(NodeParser(node_elem))
+            node = NodeParser(node_elem)
+            print('Adding ' + node.name)
+            self.nodes.append(node)
         try:
             records_elems = node.getElementsByTagName(
                 'recordtable')[0].getElementsByTagName('record')
@@ -87,6 +140,10 @@ class NodeParser(object):
                 'records': list(map(RecordParser.to_string, self.records)),
                 }
 
+    def to_html(self):
+        return ('<p class="list-item"><a href="' + self.id + '" class="href">Node:'
+                + self.name + '</a>' + (', encrypted' if self.crypt else '') + '</p>')
+
 
 class MytetraParser(object):
 
@@ -111,6 +168,12 @@ class MytetraParser(object):
 
 
 if __name__ == "__main__":
+    # index = HtmlIndex('title', [IndexElem('1', '1', 0, 0, False), IndexElem('2', '2', 0, 0, False), IndexElem('3', '3', 0, 0, False)])
+    # print(index.to_html())
     mytetra = MytetraParser("mytetra.xml")
     # print(mytetra.to_string())
-    mytetra.content.construct()
+    # mytetra.content.construct()
+    # print(mytetra.content.to_html())
+    index = HtmlIndex('Root', mytetra.content.nodes, [])
+    index.to_html()
+    # print(index.to_html())
