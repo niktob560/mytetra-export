@@ -1,6 +1,6 @@
 #!/bin/python
 
-import xml.dom.minidom
+import xml.etree.cElementTree as ET
 import os
 import shutil
 
@@ -68,15 +68,26 @@ def copytree(src, dst, symlinks=False, ignore=None):
 
 class RecordParser(object):
     def __init__(self, record):
-        self.id = record.getAttribute('id')
-        self.name = record.getAttribute('name')
-        self.author = record.getAttribute('author')
-        self.url = record.getAttribute('url')
-        self.tags = record.getAttribute('tags')
-        self.ctime = record.getAttribute('ctime')
-        self.dir = record.getAttribute('dir')
-        self.file = record.getAttribute('file')
-        self.block = record.getAttribute('block') == '1'
+        self.block = False
+        for (name, value) in record.attrib.items():
+            if name == 'id':
+                self.id = value
+            elif name == 'name':
+                self.name = value
+            elif name == 'author':
+                self.author = value
+            elif name == 'url':
+                self.url = value
+            elif name == 'tags':
+                self.tags = value
+            elif name == 'ctime':
+                self.ctime = value
+            elif name == 'dir':
+                self.dir = value
+            elif name == 'file':
+                self.file = value
+            elif name == 'block':
+                self.block = value == '1'
 
     def to_string(self):
         return {'id': self.id,
@@ -97,24 +108,27 @@ class RecordParser(object):
 
 class NodeParser(object):
     def __init__(self, node):
-        self.crypt = node.getAttribute('crypt') == '1'
-        self.id = node.getAttribute('id')
-        self.name = node.getAttribute('name')
-        self.icon = node.getAttribute('icon')
-        nodes_elems = node.getElementsByTagName('node')
         self.nodes = []
         self.records = []
-        for node_elem in nodes_elems:
-            node = NodeParser(node_elem)
-            print('Adding ' + node.name)
-            self.nodes.append(node)
-        try:
-            records_elems = node.getElementsByTagName(
-                'recordtable')[0].getElementsByTagName('record')
-            for record_elem in records_elems:
-                self.records.append(RecordParser(record_elem))
-        except:
-            self.records = []
+        self.crypt = False
+        self.id = ''
+        self.name = ''
+        self.icon = ''
+        for (name, value) in node.attrib.items():
+            if name == 'crypt':
+                self.crypt = value == '1'
+            if name == 'id':
+                self.id = value
+            if name == 'name':
+                self.name = value
+            if name == 'icon':
+                self.icon = value
+        for item in node:
+            if item.tag == 'node':
+                self.nodes.append(NodeParser(item))
+            elif item.tag == 'recordtable':
+                for record in item:
+                    self.records.append(RecordParser(record))
 
     def construct(self):
         # Create directories
@@ -149,10 +163,16 @@ class MytetraParser(object):
 
     def __init__(self, url, flag='url'):
         xml = self.getXml(url)
-        fmt = xml.getElementsByTagName('format')[0]
-        self.version = int(fmt.getAttribute('version'))
-        self.subversion = int(fmt.getAttribute('subversion'))
-        self.content = NodeParser(xml.getElementsByTagName('content')[0])
+
+        for item in xml:
+            if item.tag == 'format':
+                for (name, value) in item.attrib.items():
+                    if name == 'version':
+                        self.version = value
+                    if name == 'subversion':
+                        self.subversion = value
+            if item.tag == 'content':
+                self.content = NodeParser(item)
         self.flag = flag
 
     def to_string(self):
@@ -162,9 +182,8 @@ class MytetraParser(object):
                 }
 
     def getXml(self, url):
-        doc = xml.dom.minidom.parse(url)
-        node = doc.documentElement
-        return node
+        doc = ET.ElementTree(file=url)
+        return doc.getroot()
 
 
 if __name__ == "__main__":
@@ -174,6 +193,6 @@ if __name__ == "__main__":
     # print(mytetra.to_string())
     # mytetra.content.construct()
     # print(mytetra.content.to_html())
-    index = HtmlIndex('Root', mytetra.content.nodes, [])
-    index.to_html()
+    # index = HtmlIndex('Root', mytetra.content.nodes[1].nodes[0].nodes, mytetra.content.nodes[1].nodes[0].records)
+    # index.to_html()
     # print(index.to_html())
