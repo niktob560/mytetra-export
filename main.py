@@ -8,18 +8,6 @@ import shutil
 sourse_dir = '/tmp/test/base/'
 
 
-# class IndexElem(object):
-#     def __init__(self, title: str, href: str, records: int, nodes: int, crypt: bool):
-#         self.title = title
-#         self.href = href
-#         self.records = records
-#         self.nodes = nodes
-#         self.crypt = crypt
-
-#     def to_html(self):
-#         return '<p class="list-item"><a href="{}" class="href">{}</a></p>'.format(self.href, self.title)
-
-
 class HtmlIndex(object):
     def __init__(self, title: str, nodes: list, records: list):
         self.title = title
@@ -38,10 +26,10 @@ class HtmlIndex(object):
                 + '<title>' + self.title + '</title>'
                 + '<meta http-equiv="content-type" content="text/html; charset=UTF-8">'
                 + '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">'
-                + '<link rel="stylesheet" type="text/css" href="nav.css">'
-                + '<link rel="stylesheet" type="text/css" href="list-item.css">'
-                + '<link rel="stylesheet" type="text/css" href="body.css">'
-                + '<link rel="stylesheet" type="text/css" href="href.css">'
+                + '<link rel="stylesheet" type="text/css" href="/tmp/test/nav.css">'
+                + '<link rel="stylesheet" type="text/css" href="/tmp/test/list-item.css">'
+                + '<link rel="stylesheet" type="text/css" href="/tmp/test/body.css">'
+                + '<link rel="stylesheet" type="text/css" href="/tmp/test/href.css">'
                 + '</head>'
                 + '<body>'
                 + '<div class="topnav">'
@@ -69,6 +57,7 @@ def copytree(src, dst, symlinks=False, ignore=None):
 class RecordParser(object):
     def __init__(self, record):
         self.block = False
+        self.crypt = False
         for (name, value) in record.attrib.items():
             if name == 'id':
                 self.id = value
@@ -88,6 +77,8 @@ class RecordParser(object):
                 self.file = value
             elif name == 'block':
                 self.block = value == '1'
+            elif name == 'crypt':
+                self.crypt = value == '1'
 
     def to_string(self):
         return {'id': self.id,
@@ -102,8 +93,13 @@ class RecordParser(object):
                 }
 
     def to_html(self):
-        return ('<p class="list-item"><a href="' + self.dir + '/' + self.file + '" class="href">'
-                + self.name + '</a></p>')
+        return ('<div class="list-item" onclick="window.open(\'' + self.dir + '/' + self.file + '\', \'_self\')">'
+                + '<h3>' + self.name + '</h3>'
+                + '<div>Encrypted: ' + ('yes' if self.crypt else 'no') + '</div>'
+                + '<div>Author: ' + self.author + '</div>'
+                + '<div>Tags: ' + self.tags + '</div>'
+                + '<div>Blocked: ' + ('yes' if self.block else 'no') + '</div>'
+                + '</div>')
 
 
 class NodeParser(object):
@@ -128,14 +124,15 @@ class NodeParser(object):
                 self.nodes.append(NodeParser(item))
             elif item.tag == 'recordtable':
                 for record in item:
-                    self.records.append(RecordParser(record))
+                    r = RecordParser(record)
+                    self.records.append(r)
 
     def construct(self):
         # Create directories
         for node in self.nodes:
             os.mkdir(node.id)
             os.chdir(node.id)
-            for record in self.records:
+            for record in node.records:
                 # Copy data
                 copytree(sourse_dir + record.dir,
                          os.path.abspath(os.getcwd()) + '/' + record.dir)
@@ -155,8 +152,12 @@ class NodeParser(object):
                 }
 
     def to_html(self):
-        return ('<p class="list-item"><a href="' + self.id + '" class="href">Node:'
-                + self.name + '</a>' + (', encrypted' if self.crypt else '') + '</p>')
+        return ('<div class="list-item" onclick="window.open(\'' + self.id + '/index.html\', \'_self\')">'
+                + '<h3>' + self.name + '</h3>'
+                + '<div>Encrypted: ' + ('yes' if self.crypt else 'no') + '</div>'
+                + '<div>Nodes: ' + str(self.nodes.__len__()) + '</div>'
+                + '<div>Records: ' + str(self.records.__len__()) + '</div>'
+                + '</div>')
 
 
 class MytetraParser(object):
@@ -185,13 +186,22 @@ class MytetraParser(object):
         doc = ET.ElementTree(file=url)
         return doc.getroot()
 
+def make_indexes(root: NodeParser):
+    index = HtmlIndex(root.name, root.nodes, root.records)
+    with open('index.html', 'a') as f:
+        f.write(index.to_html())
+    for node in root.nodes:
+        os.chdir(node.id)
+        make_indexes(node)
+        os.chdir('..')
 
 if __name__ == "__main__":
     # index = HtmlIndex('title', [IndexElem('1', '1', 0, 0, False), IndexElem('2', '2', 0, 0, False), IndexElem('3', '3', 0, 0, False)])
     # print(index.to_html())
     mytetra = MytetraParser("mytetra.xml")
+    mytetra.content.construct()
+    make_indexes(mytetra.content)
     # print(mytetra.to_string())
-    # mytetra.content.construct()
     # print(mytetra.content.to_html())
     # index = HtmlIndex('Root', mytetra.content.nodes[1].nodes[0].nodes, mytetra.content.nodes[1].nodes[0].records)
     # index.to_html()
