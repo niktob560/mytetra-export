@@ -154,10 +154,10 @@ class NodeParser(object):
     def to_html(self):
         return ('<div class="list-item" onclick="window.open(\'' + self.id + '/index.html\', \'_self\')">'
                 + '<h3>' + self.name + '</h3>'
-                + '<div>Encrypted: ' + ('yes' if self.crypt else 'no') + '</div>'
+                # + '<div>Encrypted: ' + ('yes' if self.crypt else 'no') + '</div>'
                 + '<div>Nodes: ' + str(self.nodes.__len__()) + '</div>'
                 + '<div>Records: ' + str(self.records.__len__()) + '</div>'
-                + '</div>')
+                + '</div>') if not self.crypt else ''
 
 
 class MytetraParser(object):
