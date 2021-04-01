@@ -4,17 +4,23 @@ import xml.etree.cElementTree as ET
 import os
 import shutil
 
-from argparse import ArgumentParser
+import argparse
 
-parser = ArgumentParser(description='Create mytetra index hierarhy')
+parser = argparse.ArgumentParser(description='Create mytetra index hierarhy')
 parser.add_argument('source_dir', type=str,
                     help='Set mytetra data source directory')
 
 parser.add_argument('dest_dir', type=str, help='Set destenation directory')
 
+
+parser.add_argument('--encrypted', dest='encrypted', default=False,
+                    action=argparse.BooleanOptionalAction,
+                    help='Enable encrypted nodes')
+
 args = parser.parse_args()
 source_dir = args.source_dir
 dest_dir = args.dest_dir
+enable_encrypted = args.encrypted
 
 
 class HtmlIndex(object):
@@ -102,14 +108,24 @@ class RecordParser(object):
                 }
 
     def to_html(self):
-        return ('<div class="list-item" onclick="window.open(\'' + self.dir + '/' + self.file + '\', \'_self\')">'
-                + '<h3>' + self.name + '</h3>'
-                + '<div>Encrypted: ' +
-                ('yes' if self.crypt else 'no') + '</div>'
-                + '<div>Author: ' + self.author + '</div>'
-                + '<div>Tags: ' + self.tags + '</div>'
-                + '<div>Blocked: ' + ('yes' if self.block else 'no') + '</div>'
-                + '</div>')
+        if enable_encrypted:
+            return ('<div class="list-item" onclick="window.open(\'' + self.dir + '/' + self.file + '\', \'_self\')">'
+                    + '<h3>' + self.name + '</h3>'
+                    + '<div>Encrypted: ' +
+                    ('yes' if self.crypt else 'no') + '</div>'
+                    + '<div>Author: ' + self.author + '</div>'
+                    + '<div>Tags: ' + self.tags + '</div>'
+                    + '<div>Blocked: ' +
+                    ('yes' if self.block else 'no') + '</div>'
+                    + '</div>')
+        else:
+            return ('<div class="list-item" onclick="window.open(\'' + self.dir + '/' + self.file + '\', \'_self\')">'
+                    + '<h3>' + self.name + '</h3>'
+                    + '<div>Author: ' + self.author + '</div>'
+                    + '<div>Tags: ' + self.tags + '</div>'
+                    + '<div>Blocked: ' +
+                    ('yes' if self.block else 'no') + '</div>'
+                    + '</div>') if not self.crypt else ''
 
 
 class NodeParser(object):
@@ -162,12 +178,20 @@ class NodeParser(object):
                 }
 
     def to_html(self):
-        return ('<div class="list-item" onclick="window.open(\'' + self.id + '/index.html\', \'_self\')">'
-                + '<h3>' + self.name + '</h3>'
-                # + '<div>Encrypted: ' + ('yes' if self.crypt else 'no') + '</div>'
-                + '<div>Nodes: ' + str(self.nodes.__len__()) + '</div>'
-                + '<div>Records: ' + str(self.records.__len__()) + '</div>'
-                + '</div>') if not self.crypt else ''
+        if enable_encrypted:
+            return ('<div class="list-item" onclick="window.open(\'' + self.id + '/index.html\', \'_self\')">'
+                    + '<h3>' + self.name + '</h3>'
+                    + '<div>Encrypted: ' +
+                    ('yes' if self.crypt else 'no') + '</div>'
+                    + '<div>Nodes: ' + str(self.nodes.__len__()) + '</div>'
+                    + '<div>Records: ' + str(self.records.__len__()) + '</div>'
+                    + '</div>')
+        else:
+            return ('<div class="list-item" onclick="window.open(\'' + self.id + '/index.html\', \'_self\')">'
+                    + '<h3>' + self.name + '</h3>'
+                    + '<div>Nodes: ' + str(self.nodes.__len__()) + '</div>'
+                    + '<div>Records: ' + str(self.records.__len__()) + '</div>'
+                    + '</div>') if not self.crypt else ''
 
 
 class MytetraParser(object):
