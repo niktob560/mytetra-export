@@ -232,15 +232,8 @@ def make_indexes(root: NodeParser):
 
 
 if __name__ == '__main__':
-    # index = HtmlIndex('title', [IndexElem('1', '1', 0, 0, False), IndexElem('2', '2', 0, 0, False), IndexElem('3', '3', 0, 0, False)])
-    # print(index.to_html())
     copytree('static', dest_dir + 'static')
     os.chdir(dest_dir)
     mytetra = MytetraParser(source_dir + 'mytetra.xml')
     mytetra.content.construct()
     make_indexes(mytetra.content)
-    # print(mytetra.to_string())
-    # print(mytetra.content.to_html())
-    # index = HtmlIndex('Root', mytetra.content.nodes[1].nodes[0].nodes, mytetra.content.nodes[1].nodes[0].records)
-    # index.to_html()
-    # print(index.to_html())
