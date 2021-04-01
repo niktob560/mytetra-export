@@ -123,11 +123,11 @@ class NodeParser(object):
         for (name, value) in node.attrib.items():
             if name == 'crypt':
                 self.crypt = value == '1'
-            if name == 'id':
+            elif name == 'id':
                 self.id = value
-            if name == 'name':
+            elif name == 'name':
                 self.name = value
-            if name == 'icon':
+            elif name == 'icon':
                 self.icon = value
         for item in node:
             if item.tag == 'node':
