@@ -13,9 +13,12 @@ parser.add_argument('source_dir', type=str,
 parser.add_argument('dest_dir', type=str, help='Set destenation directory')
 
 
-parser.add_argument('--encrypted', dest='encrypted', default=False,
-                    action=argparse.BooleanOptionalAction,
-                    help='Enable encrypted nodes')
+encrypted_parser = parser.add_mutually_exclusive_group(required=False)
+encrypted_parser.add_argument(
+    '--encrypted', dest='encrypted', action='store_true')
+encrypted_parser.add_argument(
+    '--no-encrypted', dest='encrypted', action='store_false')
+parser.set_defaults(encrypted=False)
 
 args = parser.parse_args()
 source_dir = args.source_dir
