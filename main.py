@@ -4,8 +4,17 @@ import xml.etree.cElementTree as ET
 import os
 import shutil
 
+from argparse import ArgumentParser
 
-sourse_dir = '/tmp/test/base/'
+parser = ArgumentParser(description='Create mytetra index hierarhy')
+parser.add_argument('source_dir', type=str,
+                    help='Set mytetra data source directory')
+
+parser.add_argument('dest_dir', type=str, help='Set destenation directory')
+
+args = parser.parse_args()
+source_dir = args.source_dir
+dest_dir = args.dest_dir
 
 
 class HtmlIndex(object):
@@ -26,10 +35,10 @@ class HtmlIndex(object):
                 + '<title>' + self.title + '</title>'
                 + '<meta http-equiv="content-type" content="text/html; charset=UTF-8">'
                 + '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">'
-                + '<link rel="stylesheet" type="text/css" href="/tmp/test/nav.css">'
-                + '<link rel="stylesheet" type="text/css" href="/tmp/test/list-item.css">'
-                + '<link rel="stylesheet" type="text/css" href="/tmp/test/body.css">'
-                + '<link rel="stylesheet" type="text/css" href="/tmp/test/href.css">'
+                + '<link rel="stylesheet" type="text/css" href="/static/nav.css">'
+                + '<link rel="stylesheet" type="text/css" href="/static/list-item.css">'
+                + '<link rel="stylesheet" type="text/css" href="/static/body.css">'
+                + '<link rel="stylesheet" type="text/css" href="/static/href.css">'
                 + '</head>'
                 + '<body>'
                 + '<div class="topnav">'
@@ -95,7 +104,8 @@ class RecordParser(object):
     def to_html(self):
         return ('<div class="list-item" onclick="window.open(\'' + self.dir + '/' + self.file + '\', \'_self\')">'
                 + '<h3>' + self.name + '</h3>'
-                + '<div>Encrypted: ' + ('yes' if self.crypt else 'no') + '</div>'
+                + '<div>Encrypted: ' +
+                ('yes' if self.crypt else 'no') + '</div>'
                 + '<div>Author: ' + self.author + '</div>'
                 + '<div>Tags: ' + self.tags + '</div>'
                 + '<div>Blocked: ' + ('yes' if self.block else 'no') + '</div>'
@@ -134,7 +144,7 @@ class NodeParser(object):
             os.chdir(node.id)
             for record in node.records:
                 # Copy data
-                copytree(sourse_dir + record.dir,
+                copytree(source_dir + '/base/' + record.dir,
                          os.path.abspath(os.getcwd()) + '/' + record.dir)
                 # Construct child
             node.construct()
@@ -186,6 +196,7 @@ class MytetraParser(object):
         doc = ET.ElementTree(file=url)
         return doc.getroot()
 
+
 def make_indexes(root: NodeParser):
     index = HtmlIndex(root.name, root.nodes, root.records)
     with open('index.html', 'a') as f:
@@ -195,10 +206,13 @@ def make_indexes(root: NodeParser):
         make_indexes(node)
         os.chdir('..')
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     # index = HtmlIndex('title', [IndexElem('1', '1', 0, 0, False), IndexElem('2', '2', 0, 0, False), IndexElem('3', '3', 0, 0, False)])
     # print(index.to_html())
-    mytetra = MytetraParser("mytetra.xml")
+    copytree('static', dest_dir + 'static')
+    os.chdir(dest_dir)
+    mytetra = MytetraParser(source_dir + 'mytetra.xml')
     mytetra.content.construct()
     make_indexes(mytetra.content)
     # print(mytetra.to_string())
