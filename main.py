@@ -1,4 +1,4 @@
-#!/bin/python
+#!/bin/python3
 
 import xml.etree.cElementTree as ET
 import os
